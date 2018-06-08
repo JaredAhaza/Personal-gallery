@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse,Http404
 import datetime as dt
 
@@ -10,8 +10,8 @@ def welcome(request):
 
 def gallery_today(request):
     date = dt.date.today()
-    gallery = Image.todays_news()
-    return render(request, 'all-news/today-gallery.html', {"date": date,"gallery": gallery})
+    
+    return render(request, 'all-images/today-images.html', {"date": date,"gallery": gallery})
 
 def convert_dates(dates):
     #function that gets weekday number for the date
@@ -23,7 +23,7 @@ def convert_dates(dates):
     day = days[day_number]
     return day
 
-def past_days_news(request,past_date):
+def past_days_gallery(request,past_date):
 
     try:
         # Converts data from the string url
@@ -37,5 +37,5 @@ def past_days_news(request,past_date):
     if date == dt.date.today():
         return redirect(gallery_today)
 
-    news = Article.days_news(date)
-    return render(request, 'all-news/past-gallery.html', {"date": date,"gallery": gallery})
+    
+    return render(request, 'all-images/past-images.html', {"date": date,"gallery": gallery})
