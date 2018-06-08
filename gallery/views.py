@@ -5,13 +5,11 @@ import datetime as dt
 
 # Create your views here.
 def welcome(request):
-    return HttpResponse('Welcome to my personal gallery')
-
-
+    #return HttpResponse('Welcome to my personal gallery')
+    return render(request, 'welcome.html')
 def gallery_today(request):
     date = dt.date.today()
-    
-    return render(request, 'all-images/today-images.html', {"date": date,"gallery": gallery})
+    return render(request, 'all-images/today-images.html', {"date": date,})
 
 def convert_dates(dates):
     #function that gets weekday number for the date
@@ -38,4 +36,4 @@ def past_days_gallery(request,past_date):
         return redirect(gallery_today)
 
     
-    return render(request, 'all-images/past-images.html', {"date": date,"gallery": gallery})
+    return render(request, 'all-images/past-images.html', {"date": date})
