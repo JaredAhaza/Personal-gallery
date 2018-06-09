@@ -51,3 +51,8 @@ def search_results(request):
     else:
         message = "What images do you want to search for?"
         return render(request, 'all-images/search.html',{"message": message})
+
+
+def get_cars(request):
+    location_images = Image.cars()
+    return render(request, 'all-images/locations.html', {"images": location_images})
