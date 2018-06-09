@@ -88,3 +88,22 @@ class Image(models.Model):
         images = cls.objects.filter(
             location__location__startswith='personal').order_by('-post_date')
         return images
+
+
+class Location(models.Model):
+    location = models.CharField(max_length=20)
+    
+    def save_locations(self):
+        self.save()
+
+    def delete_locations(self):
+        self.delete()
+
+    
+    @classmethod
+    def update_location(cls, id, location, update):
+        updated = cls.objects.filter(id=id).update(location=update)
+        return update
+
+    def __str__(self):
+        return self.location
