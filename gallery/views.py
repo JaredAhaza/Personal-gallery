@@ -56,3 +56,13 @@ def search_results(request):
 def get_cars(request):
     location_images = Image.cars()
     return render(request, 'all-images/locations.html', {"images": location_images})
+
+
+def get_myhood(request):
+    location_images = Image.myhood()
+    return render(request, 'all-images/locations.html', {"images": location_images})
+
+
+def get_videogames(request):
+    location_images = Image.videogames()
+    return render(request, 'all-images/locations.html', {"images": location_images})
