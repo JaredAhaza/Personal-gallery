@@ -66,3 +66,8 @@ def get_myhood(request):
 def get_videogames(request):
     location_images = Image.videogames()
     return render(request, 'all-images/locations.html', {"images": location_images})
+
+def personal(request):
+    title = 'Personal'
+    personal = Image.get_personal()
+    return render(request, 'all-news/personal.html',{"personal": personal})
