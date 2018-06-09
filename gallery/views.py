@@ -37,3 +37,7 @@ def past_days_gallery(request,past_date):
 
     
     return render(request, 'all-images/past-images.html', {"date": date})
+
+def image(request, image_id):
+    image = Image.get_image(image_id)
+    return render(request, 'pastimages.html', {"image": image})
