@@ -9,7 +9,8 @@ def welcome(request):
     return render(request, 'welcome.html')
 def gallery_today(request):
     date = dt.date.today()
-    return render(request, 'all-images/today-images.html', {"date": date,})
+    image = Image.get_image(image_id)
+    return render(request, 'all-images/today-images.html', {"date": date}, {"image": image})
 
 def convert_dates(dates):
     #function that gets weekday number for the date
@@ -35,9 +36,18 @@ def past_days_gallery(request,past_date):
     if date == dt.date.today():
         return redirect(gallery_today)
 
-    
-    return render(request, 'all-images/past-images.html', {"date": date})
 
-def image(request, image_id):
     image = Image.get_image(image_id)
-    return render(request, 'pastimages.html', {"image": image})
+    return render(request, 'all-images/past-images.html', {"date": date}, {"image": image})
+
+def search_results(request):
+
+    if 'image' in request.GET and request.GET["image"]:
+        query = request.GET.get("image")
+        results = Image.searched(query)
+        message = f"{query}"
+
+        return render(request, 'all-images/search.html',{"message": message, "results": results})
+    else:
+        message = "What images do you want to search for?"
+        return render(request, 'all-images/search.html',{"message": message})
