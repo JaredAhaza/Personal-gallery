@@ -69,9 +69,9 @@ class Image(models.Model):
         return images
 
     @classmethod
-    def personal(cls):
+    def get_personal(cls):
         images = cls.objects.filter(
-            location__location__startswith='personal').order_by('-post_date')
+            category__name__startswith='personal').order_by('-post_date')
         return images
 
 

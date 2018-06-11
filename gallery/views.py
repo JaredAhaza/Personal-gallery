@@ -35,4 +35,4 @@ def get_kenya(request):
 def personal(request):
     title = 'Personal'
     personal = Image.get_personal()
-    return render(request, 'all-news/personal.html',{"personal": personal})
+    return render(request, 'all-images/personal.html',{"title": title,"personal": personal})
