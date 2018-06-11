@@ -21,7 +21,7 @@ class Category(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to='gallery/', blank=True)
     image_name = models.CharField(max_length=30, blank=True)
-    description = models.TextField(max_length=1000, blank=True)
+    description = models.TextField(max_length=100, blank=True)
     category = models.ManyToManyField(Category, blank=True)
     post_date = models.DateTimeField(auto_now_add=True)
     locaton = models.ForeignKey('Location', on_delete=models.CASCADE)
@@ -62,24 +62,10 @@ class Image(models.Model):
         images = cls.objects.filter(post_date__date=today)
         return images
 
-
     @classmethod
-    def get_cars(cls):
-        cat_images = cls.objects.filter(
-            category__name__startswith='cars').order_by('-post_date')
-        return cat_images
-
-
-    @classmethod
-    def comics(cls):
+    def kenya(cls):
         images = cls.objects.filter(
-            location__location__startswith='comics').order_by('-post_date')
-        return images
-
-    @classmethod
-    def videogames(cls):
-        images = cls.objects.filter(
-            location__location__startswith='videogames').order_by('-post_date')
+            location__location__startswith='kenya').order_by('-post_date')
         return images
 
     @classmethod

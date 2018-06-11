@@ -1,0 +1,28 @@
+{% extends 'all-news/base.html' %}
+
+{% block content %}
+{{block.super}}
+<div class="container">
+    <div class="row display-news">
+        <!-- Loop through news -->
+        {% for gallery_item in gallery %}
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 articles-home">
+            <h2> {{gallery_item.title}} </h2>
+            <hr>
+            <p> {{gallery_item.post|truncatechars:400}}<a href="/image/{{gallery_item.id}}" class="btn btn-link">Read more</a></p>
+                <p class="small"> Tags:
+                    {% for location in gallery_item.location.all %}
+                    {{tag}} 
+                    {% endfor %}
+                </p>
+            <p> {{galllery_item.category}} </p>
+            <p class="small">Posted on: {{gallery_item.post_date}} </p>
+        </div>
+        {% empty %}
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+            <h2> No Images today </h2>
+        </div>
+        {% endfor %}        
+    </div>
+</div>
+{% endblock %}
