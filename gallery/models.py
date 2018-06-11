@@ -65,8 +65,10 @@ class Image(models.Model):
     @classmethod
     def kenya(cls):
         images = cls.objects.filter(
-            location__location__startswith='kenya').order_by('-post_date')
+            locaton__location__startswith='kenya').order_by('-post_date')
         return images
+
+
 
     @classmethod
     def get_personal(cls):
