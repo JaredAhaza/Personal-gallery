@@ -24,7 +24,7 @@ class Image(models.Model):
     description = models.TextField(max_length=1000, blank=True)
     category = models.ManyToManyField(Category, blank=True)
     post_date = models.DateTimeField(auto_now_add=True)
-    locaton = models.ForeignKey('Location', on_delete=models.CASCADE)
+    location = models.ForeignKey('Location', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['-post_date']
@@ -65,7 +65,7 @@ class Image(models.Model):
     @classmethod
     def kenya(cls):
         images = cls.objects.filter(
-            locaton__location__startswith='kenya').order_by('-post_date')
+            location__location__startswith='kenya').order_by('-post_date')
         return images
 
 
