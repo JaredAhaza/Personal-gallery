@@ -68,15 +68,6 @@ class Image(models.Model):
             location__location__startswith='kenya').order_by('-post_date')
         return images
 
-
-
-    @classmethod
-    def get_personal(cls):
-        images = cls.objects.filter(
-            category__name__startswith='personal').order_by('-post_date')
-        return images
-
-
 class Location(models.Model):
     location = models.CharField(max_length=20)
     

@@ -12,6 +12,7 @@ def welcome(request):
 
 def image(request, image_id):
     image = Image.get_image(image_id)
+    print(image.image.url)
     return render(request, 'all-images/image.html', {"image": image})
 
 
@@ -31,8 +32,3 @@ def search_results(request):
 def get_kenya(request):
     location_images = Image.kenya()
     return render(request, 'all-images/locations.html', {"images": location_images})
-
-def personal(request):
-    title = 'Personal'
-    personal = Image.get_personal()
-    return render(request, 'all-images/personal.html',{"title": title,"personal": personal})
